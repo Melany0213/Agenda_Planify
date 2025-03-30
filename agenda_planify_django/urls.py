@@ -16,8 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from agenda_planify.views.view_activity import ActivityList, ActivityDetail
+from agenda_planify.views.view_pt_ftl import Pt_FTLDetail, Pt_FTLList
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('activity/', ),
+    # path('', views.index, name='index'),
+    
+    path('activity/', ActivityList.as_view(), name='item-list'),  # Lista de ítems
+    path('activity/<int:pk>/', ActivityDetail.as_view(), name='item-detail'),
+
+    path('pt_ftl/', Pt_FTLList.as_view(), name='item-list'),  # Lista de ítems
+    path('pt_ftl/<int:pk>/', Pt_FTLDetail.as_view(), name='item-detail'),
+
+    
 ]
